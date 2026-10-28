@@ -1,20 +1,35 @@
 from data_loader import load_data
-
+from time import sleep
+import menu
+import analysis
 
 def main():
     path = "data/student-mat.csv"
     students = load_data(path)
 
-    print(f"Loaded students: {len(students)}")
-    print(f"Selected columns: {len(students[0])}")
-    print("Columns:", ", ".join(students[0].keys()))
+    while True:
+        menu.main_menu(students)
+        option = input("Choose an option: ")
 
-    print("\nFirst student:")
-    first_student = students[0]
+        match option:
+            case "0": 
+                print("Exiting program...")
+                sleep(1)
+                break
+            case "1":
+                stats = analysis.grade_statistics(students)
+                if stats is None:
+                    print("No student data available.")
+                    return
+                print(f"Total students: {stats['total']}")
+                print(f"Columns available: {stats['fields']}")
+                print(f"Average final grade: {stats['avg']}")
+                print(f"Highest final grade: {stats['max']}")
+                print(f"Lowest final grade: {stats['min']}")
+            case _:
+                print("Invalid option")
 
-    for column, value in first_student.items():
-        print(f"{column}: {value}")
-
+            
 
 if __name__ == "__main__":
     main()

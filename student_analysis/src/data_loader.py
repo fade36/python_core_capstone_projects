@@ -1,20 +1,9 @@
 import csv
 
-
 def load_data(path):
     selected_columns = [
-        "school",
-        "sex",
-        "age",
-        "address",
-        "studytime",
-        "failures",
-        "schoolsup",
-        "internet",
-        "absences",
-        "G1",
-        "G2",
-        "G3",
+        "school","sex","age","address","studytime","failures",
+        "schoolsup","internet","absences","G1","G2","G3"
     ]
 
     with open(path, "r", newline="") as file:
@@ -23,10 +12,14 @@ def load_data(path):
         students = []
 
         for row in reader:
-            student = {
-                column: row[column]
-                for column in selected_columns
-            }
+            student = {}
+
+            for column in selected_columns:
+                if column in row:
+                    if row[column].isdigit():
+                        student[column] = int(row[column])
+                    else:
+                        student[column] = row[column]
             students.append(student)
 
     return students
