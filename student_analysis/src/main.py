@@ -23,13 +23,15 @@ def main():
                     print("-"*55)
             case "2":
                 index = int(input("Student number: "))
-                analysis.get_student(students, index-1)
+                student = analysis.get_student(students, index-1)
+                print(student)
                 while input("Type 0 to go back: ") != "0":
                     print("-"*55)
-                    analysis.get_student(students, index-1)
+                    print(student)
                     print("-"*55)
             case "3":
-                analysis.get_avg(students)
+                avgs = analysis.get_avg(students)
+                menu.show_grade_averages(avgs)
                 while input("Type 0 to go back: ") != "0":
                     print("-"*55)
                     analysis.get_avg(students)

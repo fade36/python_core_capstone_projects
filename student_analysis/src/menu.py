@@ -29,6 +29,13 @@ def menu_1(students):
     print(f"Highest final grade: {stats['max']}")
     print(f"Lowest final grade: {stats['min']}")
 
+def show_grade_averages(avgs):
+    if avgs is None:
+        print("No student data availeble")
+        return
+    for grade, average in avgs.items():
+        print(f"Average {grade}: {average}")
+
 def menu_5():
     print("="*55)
     print("1. Filter by school")

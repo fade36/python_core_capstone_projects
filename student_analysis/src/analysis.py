@@ -9,30 +9,21 @@ def grade_statistics(students):
         "total": len(students),
         "fields": len(students[0])
     }
+
 def get_student(students, index):
     if index < 0 or index >= len(students) or not students :
         return None
-    for key in students[index]:
-        print(f"{key}: {students[index][key]}")
+    return students[index]
 
 def get_avg(students):
     if not students:
         return None
-    g1 = [student["G1"] for student in students]
-    g2 = [student["G2"] for student in students]
-    g3 = [student["G3"] for student in students]
-    print(f"Average G1: {round(sum(g1) / len(g1),2)}")
-    print(f"Average G2: {round(sum(g2) / len(g2),2)}")
-    print(f"Average G3: {round(sum(g3) / len(g3),2)}")
-    print("Students with G3 >= 10: ", end="")
-    for i in range(len(students)):
-        if students[i]["G3"] >= 10:
-            print(f"student{i}", end="; ")
-    print("\nStudents with G3 < 10: ", end="")
-    for i in range(len(students)):
-        if students[i]["G3"] < 10:
-            print(f"student{i}",end="; ")
-    print()
+    return {
+        "G1": round(sum((student["G1"] for student in students)) / len(students),2),
+        "G2": round(sum((student["G2"] for student in students)) / len(students),2),
+        "G3": round(sum((student["G3"] for student in students)) / len(students),2)
+    }
+
 
 def top_ten(students):
     tops = sorted(
@@ -43,6 +34,7 @@ def top_ten(students):
 
     for index, student in tops:
         print(f"Student #{index} : ({student['G3']},{student['G2']},{student['G1']})")
+    
 
 def filter_students(students, filters):
     if not filters or not students:
