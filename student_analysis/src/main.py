@@ -2,6 +2,7 @@ from data_loader import load_data
 from time import sleep
 import menu
 import analysis
+import exporter
 
 def main():
     path = "data/student-mat.csv"
@@ -115,8 +116,18 @@ def main():
                     while result_option != "0":
                         print("Invalid option")
                         result_option = input("Type '0' to return to Analysis menu: ")
-            #case "7":
-
+            case "7":
+                summary = {
+                    "dataset_overview": analysis.grade_statistics(students),
+                    "average_grade": analysis.get_avg(students),
+                    "top_students": analysis.top_ten(students),
+                    "study_time/final_grade": analysis.studytime_to_finalGrade(students),
+                    "absences/final_grade": analysis.continuous_field(students, "absences"),
+                    "failures/final_grade": analysis.continuous_field(students, "failures"),
+                    "schoolsup/final_grade": analysis.discrete_field(students, "schoolsup"),
+                    "internet/final_grade": analysis.discrete_field(students, "internet")
+                }
+                exporter.json_export("data/data.json", summary)
             case _:
                 print("Invalid option")
 

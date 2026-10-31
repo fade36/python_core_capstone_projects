@@ -1,0 +1,288 @@
+{
+    "dataset_overview": {
+        "total": 395,
+        "fields": 12,
+        "max": 20,
+        "min": 0,
+        "avg": 10.42
+    },
+    "average_grade": {
+        "G1": 10.91,
+        "G2": 10.71,
+        "G3": 10.42
+    },
+    "top_students": [
+        {
+            "rank": 1,
+            "student_number": 48,
+            "G1": 19,
+            "G2": 19,
+            "G3": 20
+        },
+        {
+            "rank": 2,
+            "student_number": 111,
+            "G1": 18,
+            "G2": 19,
+            "G3": 19
+        },
+        {
+            "rank": 3,
+            "student_number": 114,
+            "G1": 18,
+            "G2": 19,
+            "G3": 19
+        },
+        {
+            "rank": 4,
+            "student_number": 375,
+            "G1": 19,
+            "G2": 18,
+            "G3": 19
+        },
+        {
+            "rank": 5,
+            "student_number": 287,
+            "G1": 18,
+            "G2": 18,
+            "G3": 19
+        },
+        {
+            "rank": 6,
+            "student_number": 9,
+            "G1": 16,
+            "G2": 18,
+            "G3": 19
+        },
+        {
+            "rank": 7,
+            "student_number": 43,
+            "G1": 19,
+            "G2": 18,
+            "G3": 18
+        },
+        {
+            "rank": 8,
+            "student_number": 130,
+            "G1": 18,
+            "G2": 18,
+            "G3": 18
+        },
+        {
+            "rank": 9,
+            "student_number": 199,
+            "G1": 18,
+            "G2": 18,
+            "G3": 18
+        },
+        {
+            "rank": 10,
+            "student_number": 246,
+            "G1": 18,
+            "G2": 18,
+            "G3": 18
+        }
+    ],
+    "study_time/final_grade": {
+        "group1": {
+            "Students": 105,
+            "Average final grade": 10.05,
+            "Minimum grade": 0,
+            "Maximum grade": 19
+        },
+        "group2": {
+            "Students": 198,
+            "Average final grade": 10.17,
+            "Minimum grade": 0,
+            "Maximum grade": 19
+        },
+        "group3": {
+            "Students": 65,
+            "Average final grade": 11.4,
+            "Minimum grade": 0,
+            "Maximum grade": 19
+        },
+        "group4": {
+            "Students": 27,
+            "Average final grade": 11.26,
+            "Minimum grade": 0,
+            "Maximum grade": 20
+        }
+    },
+    "absences/final_grade": {
+        "0": {
+            "Average": 8.44,
+            "Student count": 115
+        },
+        "2": {
+            "Average": 11.91,
+            "Student count": 65
+        },
+        "4": {
+            "Average": 11.28,
+            "Student count": 53
+        },
+        "6": {
+            "Average": 11.77,
+            "Student count": 31
+        },
+        "8": {
+            "Average": 10.59,
+            "Student count": 22
+        },
+        "10": {
+            "Average": 11.24,
+            "Student count": 17
+        },
+        "14": {
+            "Average": 9.33,
+            "Student count": 12
+        },
+        "12": {
+            "Average": 10.75,
+            "Student count": 12
+        },
+        "3": {
+            "Average": 11.5,
+            "Student count": 8
+        },
+        "16": {
+            "Average": 9.86,
+            "Student count": 7
+        },
+        "7": {
+            "Average": 11.86,
+            "Student count": 7
+        },
+        "18": {
+            "Average": 8.4,
+            "Student count": 5
+        },
+        "5": {
+            "Average": 11.6,
+            "Student count": 5
+        },
+        "20": {
+            "Average": 11.5,
+            "Student count": 4
+        },
+        "13": {
+            "Average": 12.67,
+            "Student count": 3
+        },
+        "15": {
+            "Average": 8.33,
+            "Student count": 3
+        },
+        "22": {
+            "Average": 8.0,
+            "Student count": 3
+        },
+        "1": {
+            "Average": 13.0,
+            "Student count": 3
+        },
+        "9": {
+            "Average": 13.33,
+            "Student count": 3
+        },
+        "11": {
+            "Average": 11.67,
+            "Student count": 3
+        },
+        "25": {
+            "Average": 11.0,
+            "Student count": 1
+        },
+        "54": {
+            "Average": 11.0,
+            "Student count": 1
+        },
+        "26": {
+            "Average": 6.0,
+            "Student count": 1
+        },
+        "56": {
+            "Average": 8.0,
+            "Student count": 1
+        },
+        "24": {
+            "Average": 18.0,
+            "Student count": 1
+        },
+        "28": {
+            "Average": 9.0,
+            "Student count": 1
+        },
+        "21": {
+            "Average": 18.0,
+            "Student count": 1
+        },
+        "75": {
+            "Average": 9.0,
+            "Student count": 1
+        },
+        "30": {
+            "Average": 8.0,
+            "Student count": 1
+        },
+        "19": {
+            "Average": 10.0,
+            "Student count": 1
+        },
+        "38": {
+            "Average": 8.0,
+            "Student count": 1
+        },
+        "40": {
+            "Average": 11.0,
+            "Student count": 1
+        },
+        "23": {
+            "Average": 13.0,
+            "Student count": 1
+        },
+        "17": {
+            "Average": 10.0,
+            "Student count": 1
+        }
+    },
+    "failures/final_grade": {
+        "0": {
+            "Average": 11.25,
+            "Student count": 312
+        },
+        "1": {
+            "Average": 8.12,
+            "Student count": 50
+        },
+        "2": {
+            "Average": 6.24,
+            "Student count": 17
+        },
+        "3": {
+            "Average": 5.69,
+            "Student count": 16
+        }
+    },
+    "schoolsup/final_grade": {
+        "yes": {
+            "Average": 9.43,
+            "Student count": 51
+        },
+        "no": {
+            "Average": 10.56,
+            "Student count": 344
+        }
+    },
+    "internet/final_grade": {
+        "yes": {
+            "Average": 10.62,
+            "Student count": 329
+        },
+        "no": {
+            "Average": 9.41,
+            "Student count": 66
+        }
+    }
+}

@@ -34,8 +34,14 @@ def show_grade_averages(avgs):
         print(f"Average {grade}: {average}")
 
 def show_tops(tops):
-    for index, student in tops:
-        print(f"Student #{index} : ({student['G3']},{student['G2']},{student['G1']})")
+    for student in tops:
+        print(
+            f"Rank #{student['rank']} | "
+            f"Student #{student['student_number']} | "
+            f"G1: {student['G1']} | "
+            f"G2: {student['G2']} | "
+            f"G3: {student['G3']}"
+        )
 
 def menu_5():
     print("="*55)
@@ -52,7 +58,7 @@ def result_menu_5(students):
         print("-"*55)
         return
     for student in students:
-        print(f"Student #{student[0]+2} matches")
+        print(f"Student #{student[0]+1} matches")
 
 def menu_6():
     print("="*19 + " Analyze Habits " + "="*20)
@@ -65,34 +71,40 @@ def menu_6():
     print("="*55)
 
 def result_menu_6_1(grades):
-    print("=" *17 + " StudyTime Analysis " + "="*18)
+    print("=" * 17 + " StudyTime Analysis " + "=" * 18)
     print()
-    for i in range(1,5):
+
+    for i in range(1, 5):
         if i == 1:
             print("Study time: < 2 hours/week")
         elif i == 2:
             print("Study time: 2-5 hours/week")
         elif i == 3:
-            print("Study time: < 5-10 hours/week")
+            print("Study time: 5-10 hours/week")
         else:
-            print("Study time: 10+ hours/week")
-        print(f"Students: {len(grades['group'+str(i)])}")
-        if len(grades['group'+str(i)]) == 0:
+            print("Study time: > 10 hours/week")
+
+        group = grades["group" + str(i)]
+
+        print(f"Students: {group['Students']}")
+
+        if group["Students"] == 0:
             print()
             continue
-        print(f"Average final grade: {round(sum(grades['group'+str(i)]) / len(grades['group'+str(i)]),2)}")
-        print(f"Minimum grade: {min(grades['group'+str(i)])}")
-        print(f"Maximum grade: {max(grades['group'+str(i)])}")
+
+        print(f"Average final grade: {group['Average final grade']}")
+        print(f"Minimum grade: {group['Minimum grade']}")
+        print(f"Maximum grade: {group['Maximum grade']}")
         print()
 
 def result_menu_6_235(dictionary, field):
     print("=" *18 + f" {field} analysis " + "="*18)
     for key in dictionary:
-        print(f"{field}: {key}, Final avg grade: {dictionary[key][0]}, Student count: {dictionary[key][1]}")
+        print(f"{field}: {key}, Final avg grade: {dictionary[key]['Average']}, Student count: {dictionary[key]['Student count']}")
     print("=" *55)
 
 def result_menu_6_4(schoolsup_avg):
     print("=" *15 + " School Support Analysis " + "="*15)
     for yes_no in schoolsup_avg:
-        print(f"School support: {yes_no}, Final avg grade: {schoolsup_avg[yes_no][0]}, Student count: {schoolsup_avg[yes_no][1]}")
+        print(f"School support: {yes_no}, Final avg grade: {schoolsup_avg[yes_no]['Average']}, Student count: {schoolsup_avg[yes_no]['Student count']}")
     print("=" *55)

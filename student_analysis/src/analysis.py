@@ -3,11 +3,11 @@ def grade_statistics(students):
         return None
     grades = [student["G3"] for student in students]
     return {
+        "total": len(students),
+        "fields": len(students[0]),
         "max": max(grades),
         "min": min(grades),
-        "avg": round(sum(grades) / len(grades),2),
-        "total": len(students),
-        "fields": len(students[0])
+        "avg": round(sum(grades) / len(grades),2)
     }
 
 def get_student(students, index):
@@ -26,11 +26,23 @@ def get_avg(students):
 
 def top_ten(students):
     tops = sorted(
-        enumerate(students),
+        enumerate(students,start=1),
         key = lambda pair: (pair[1]["G3"], pair[1]["G2"], pair[1]["G1"]),
         reverse=True
     )[:10]
-    return tops
+
+    result = []
+
+    for rank,(student_number, student) in enumerate(tops,start = 1):
+        result.append({
+            "rank": rank,
+            "student_number": student_number,
+            "G1": student["G1"],
+            "G2": student["G2"],
+            "G3": student["G3"]
+        })
+
+    return result
 
 def filterr(students,filters):
     if not filters or not students:
@@ -58,15 +70,40 @@ def studytime_to_finalGrade(students):
     grades["group3"] = []
     grades["group4"] = []
     for student in students:
-        if 0 <= student["studytime"] <= 2:
+        if student["studytime"] == 1:
             grades["group1"].append(student["G3"])
-        elif 2 < student["studytime"] <= 5:
+        elif student["studytime"] == 2:
             grades["group2"].append(student["G3"])
-        elif 5 < student["studytime"] <= 10:
+        elif student["studytime"] == 3:
             grades["group3"].append(student["G3"])
         else:
             grades["group4"].append(student["G3"])
-    return grades
+
+    result = {}
+
+    for grade in grades:
+        if not grades[grade]:
+            result[grade] = {
+                "Students": 0,
+                "Average final grade": None,
+                "Minimum grade": None,
+                "Maximum grade": None
+            }
+            continue
+
+        count = len(grades[grade])
+        summ = sum(grades[grade])
+        minimum = min(grades[grade])
+        maximum = max(grades[grade])
+
+        result[grade] = {
+            "Students": count,
+            "Average final grade": round(summ / count, 2),
+            "Minimum grade": minimum,
+            "Maximum grade": maximum
+        }
+
+    return result
 
 def continuous_field(students,field):
     nums = []
@@ -75,17 +112,19 @@ def continuous_field(students,field):
             nums.append(student[field])
     result = {}
     for num in nums:
-        result[num] = []
+        result[num] = {}
         count = 0
         sum = 0
         for student in students:
             if student[field] == num:
                 count+=1
                 sum+=student["G3"]
-        result[num].append(round(sum/count,2))
-        result[num].append(count)
+        result[num] = {
+            "Average": round(sum/count,2),
+            "Student count": count
+        }
 
-    result = dict(sorted(result.items(), key = lambda group: group[1][1], reverse=True))
+    result = dict(sorted(result.items(), key = lambda group: group[1]["Student count"], reverse=True))
 
     return result
 
@@ -104,11 +143,13 @@ def discrete_field(students, field):
             count_no+=1
             sum_no+=student["G3"]
 
-    result["yes"] = list()
-    result["yes"].append(round(sum_yes/count_yes,2)) 
-    result["yes"].append(count_yes)
-    result["no"] = list()
-    result["no"].append(round(sum_no/count_no,2)) 
-    result["no"].append(count_no)
+    result["yes"] = {
+        "Average": round(sum_yes/count_yes,2)  if count_yes > 0 else None,
+        "Student count": count_yes
+    }
+    result["no"] = {
+            "Average": round(sum_no/count_no,2)  if count_yes > 0 else None,
+            "Student count": count_no
+        }
 
-    return result         
+    return result 
