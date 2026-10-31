@@ -19,8 +19,7 @@ only student-mat.csv
 - Load and validate CSV data
 - Filter, sort, and analyze student records
 - Compare academic performance
-- Export results to JSON and CSV
-- Test functionality with automated unit tests
+- Export results to JSON
 
 ## Python Core Topics
 
@@ -29,7 +28,6 @@ only student-mat.csv
 - File handling and serialization
 - Error handling and validation
 - Data filtering and aggregation
-- Unit testing
 
 ## Tech Stack
 
