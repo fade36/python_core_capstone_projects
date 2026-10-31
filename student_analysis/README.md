@@ -20,6 +20,7 @@ only student-mat.csv
 - Filter, sort, and analyze student records
 - Compare academic performance
 - Export results to JSON
+- unitttests
 
 ## Python Core Topics
 
@@ -34,3 +35,4 @@ only student-mat.csv
 - Python
 - Python standard library
 - Git and GitHub
+- unittests
