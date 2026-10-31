@@ -1,5 +1,3 @@
-import analysis
-
 def main_menu(students):
     print("=" * 55)
     print("Student Perfomance Analyzer".center(55))
@@ -18,8 +16,7 @@ def main_menu(students):
     print()
     print("-"*55)
 
-def menu_1(students):
-    stats = analysis.grade_statistics(students)
+def menu_1(stats):
     if stats is None:
         print("No student data available.")
         return
@@ -36,6 +33,10 @@ def show_grade_averages(avgs):
     for grade, average in avgs.items():
         print(f"Average {grade}: {average}")
 
+def show_tops(tops):
+    for index, student in tops:
+        print(f"Student #{index} : ({student['G3']},{student['G2']},{student['G1']})")
+
 def menu_5():
     print("="*55)
     print("1. Filter by school")
@@ -43,6 +44,15 @@ def menu_5():
     print("3. Filter by study time")
     print("4. Filter by final grade")
     print("="*55)
+
+def result_menu_5(count, indexes):
+    if count == 0:
+        print("-"*55)
+        print("There is no matches!")
+        print("-"*55)
+        return
+    for index in indexes:
+        print(f"Student #{index} matches!")
 
 def menu_6():
     print("="*19 + " Analyze Habits " + "="*20)
@@ -75,4 +85,14 @@ def result_menu_6_1(grades):
         print(f"Maximum grade: {max(grades['group'+str(i)])}")
         print()
 
-    
+def result_menu_6_235(dictionary, field):
+    print("=" *18 + f" {field} analysis " + "="*18)
+    for key in dictionary:
+        print(f"{field}: {key}, Final avg grade: {dictionary[key][0]}, Student count: {dictionary[key][1]}")
+    print("=" *55)
+
+def result_menu_6_4(schoolsup_avg):
+    print("=" *15 + " School Support Analysis " + "="*15)
+    for yes_no in schoolsup_avg:
+        print(f"School support: {yes_no}, Final avg grade: {schoolsup_avg[yes_no][0]}, Student count: {schoolsup_avg[yes_no][1]}")
+    print("=" *55)

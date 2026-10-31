@@ -24,22 +24,19 @@ def get_avg(students):
         "G3": round(sum((student["G3"] for student in students)) / len(students),2)
     }
 
-
 def top_ten(students):
     tops = sorted(
         enumerate(students),
         key = lambda pair: (pair[1]["G3"], pair[1]["G2"], pair[1]["G1"]),
         reverse=True
     )[:10]
-
-    for index, student in tops:
-        print(f"Student #{index} : ({student['G3']},{student['G2']},{student['G1']})")
-    
+    return tops
 
 def filter_students(students, filters):
     if not filters or not students:
         return None 
     count=0
+    indexes = []
     for index, student in enumerate(students):
         matches = True
         for filter in filters:
@@ -47,12 +44,22 @@ def filter_students(students, filters):
                 matches = False
                 break
         if(matches):
-            print(f"Student #{index} matches!")
+            indexes.append(index)
             count+=1
-    if count == 0:
-        print("-"*55)
-        print("There is no matches!")
-        print("-"*55)
+    return count, indexes
+
+#def filterr(students,filters):
+#    if not filters or not students:
+#        return None 
+#    students = list(enumerate(students))
+#    for filter in filters:
+#        filtered_students = []
+#        for i in range(len(filters[filter])):
+#            for index,student in students:
+#                if filters[filter][i] == student[filter]:
+#                    filtered_students.append((index,student))
+#        students = filtered_students
+#    return students 
 
 def studytime_to_finalGrade(students):
     #where:
@@ -66,7 +73,7 @@ def studytime_to_finalGrade(students):
     grades["group2"] = []
     grades["group3"] = []
     grades["group4"] = []
-    for index,student in enumerate(students):
+    for student in students:
         if 0 <= student["studytime"] <= 2:
             grades["group1"].append(student["G3"])
         elif 2 < student["studytime"] <= 5:
@@ -77,4 +84,47 @@ def studytime_to_finalGrade(students):
             grades["group4"].append(student["G3"])
     return grades
 
+def continuous_field(students,field):
+    nums = []
+    for student in students:
+        if student[field] not in nums:
+            nums.append(student[field])
+    result = {}
+    for num in nums:
+        result[num] = []
+        count = 0
+        sum = 0
+        for student in students:
+            if student[field] == num:
+                count+=1
+                sum+=student["G3"]
+        result[num].append(round(sum/count,2))
+        result[num].append(count)
 
+    result = dict(sorted(result.items(), key = lambda group: group[1][1], reverse=True))
+
+    return result
+
+def discrete_field(students, field):
+    
+    result = {}
+    count_yes = 0
+    sum_yes = 0
+    count_no = 0
+    sum_no = 0
+    for student in students:
+        if student[field] == "yes":
+            count_yes+=1
+            sum_yes+=student["G3"]
+        else:
+            count_no+=1
+            sum_no+=student["G3"]
+
+    result["yes"] = list()
+    result["yes"].append(round(sum_yes/count_yes,2)) 
+    result["yes"].append(count_yes)
+    result["no"] = list()
+    result["no"].append(round(sum_no/count_no,2)) 
+    result["no"].append(count_no)
+
+    return result         
