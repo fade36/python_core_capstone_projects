@@ -32,34 +32,18 @@ def top_ten(students):
     )[:10]
     return tops
 
-def filter_students(students, filters):
+def filterr(students,filters):
     if not filters or not students:
         return None 
-    count=0
-    indexes = []
-    for index, student in enumerate(students):
-        matches = True
-        for filter in filters:
-            if filters[filter] != student[filter]:
-                matches = False
-                break
-        if(matches):
-            indexes.append(index)
-            count+=1
-    return count, indexes
-
-#def filterr(students,filters):
-#    if not filters or not students:
-#        return None 
-#    students = list(enumerate(students))
-#    for filter in filters:
-#        filtered_students = []
-#        for i in range(len(filters[filter])):
-#            for index,student in students:
-#                if filters[filter][i] == student[filter]:
-#                    filtered_students.append((index,student))
-#        students = filtered_students
-#    return students 
+    students = list(enumerate(students))
+    for filter in filters:
+        filtered_students = []
+        for i in range(len(filters[filter])):
+            for index,student in students:
+                if filters[filter][i] == student[filter]:
+                    filtered_students.append((index,student))
+        students = filtered_students
+    return students 
 
 def studytime_to_finalGrade(students):
     #where:

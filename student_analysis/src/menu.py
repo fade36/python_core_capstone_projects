@@ -45,14 +45,14 @@ def menu_5():
     print("4. Filter by final grade")
     print("="*55)
 
-def result_menu_5(count, indexes):
-    if count == 0:
+def result_menu_5(students):
+    if not students or len(students) == 0:
         print("-"*55)
         print("There is no matches!")
         print("-"*55)
         return
-    for index in indexes:
-        print(f"Student #{index} matches!")
+    for student in students:
+        print(f"Student #{student[0]+2} matches")
 
 def menu_6():
     print("="*19 + " Analyze Habits " + "="*20)

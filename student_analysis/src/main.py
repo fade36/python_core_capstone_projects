@@ -58,28 +58,38 @@ def main():
                 choice = input("Select filter (0 to finish): ")   
                 while choice != "0":
                     if choice == "1":
-                        filters["school"] = input("Type school: ")
-                        print("-"*55)  
+                        if "school" not in filters:
+                            filters["school"] = []
+                        filters["school"].append(input("Type school: "))
+                        print("-"*55) 
                     elif choice == "2":
-                        filters["age"] = int(input("Type age: "))
+                        if "age" not in filters:
+                            filters["age"] = []
+                        filters["age"].append(int(input("Type age: ")))
                         print("-"*55)  
                     elif choice == "3":
-                        filters["studytime"] = int(input("Type studytime: "))
+                        if "studytime" not in filters:
+                            filters["studytime"] = []                        
+                        filters["studytime"].append(int(input("Type studytime: ")))
                         print("-"*55)  
                     elif choice == "4":
-                        filters["G3"] = int(input("Type final grade: "))
+                        if "G3" not in filters:
+                            filters["G3"] = []
+                        filters["G3"].append(int(input("Type final grade: ")))
                         print("-"*55)  
                     else:
                         print("invalid option")
                         print("-"*55)  
                     choice = input("Select filter (0 to finish): ")
-                match_count, indexes = analysis.filter_students(students,filters)
-                print("-"*55)
-                menu.result_menu_5(match_count, indexes)
+                filtered_students = analysis.filterr(students,filters)
+                print("-"*55) 
+                menu.result_menu_5(filtered_students)
             case "6":
-                menu.menu_6()
-                option = input("Select option: ")
-                while option != "0":
+                while True:
+                    menu.menu_6()
+                    option = input("Select option: ")
+                    if option == "0":
+                        break
                     match option:
                         case "1":
                             grades = analysis.studytime_to_finalGrade(students)
@@ -98,10 +108,13 @@ def main():
                             menu.result_menu_6_235(internet, "Internet")
                         case _:
                             print("Invalid option")
-                            break
+                            continue
                     print("-"*55)
-                    option = input("Type '0' to go back: ")
+                    result_option = input("Type '0' to go back: ")
                     print("-"*55)
+                    while result_option != "0":
+                        print("Invalid option")
+                        result_option = input("Type '0' to return to Analysis menu: ")
             #case "7":
 
             case _:
