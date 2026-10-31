@@ -26,6 +26,13 @@ class TestAnalysis(unittest.TestCase):
     def test_filter_students(self):
         result = filterr(self.students, {"school": ["GP"]})
         self.assertEqual(len(result), 2)
+        
+    def test_filter_multiple_schools(self):
+        filters = {"school": ["GP", "MS"]}
+
+        result = filterr(self.students, filters)
+
+        self.assertEqual(len(result), 3)
 
 
 if __name__ == "__main__":
