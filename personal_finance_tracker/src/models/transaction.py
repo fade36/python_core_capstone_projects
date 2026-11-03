@@ -22,7 +22,7 @@ class Transaction:
         value = Decimal(value)
 
         if value <= 0:
-            raise ValueError("Value must be greater then 0")
+            raise ValueError("Value must be greater than 0")
         
         self.__value = value
 
