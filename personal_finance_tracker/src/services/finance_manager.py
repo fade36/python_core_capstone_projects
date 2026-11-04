@@ -1,5 +1,5 @@
-from models.transaction import Transaction
-from models.category import Category
+from src.models.transaction import Transaction
+from src.models.category import Category
 from decimal import Decimal
 from datetime import date
 
@@ -45,7 +45,7 @@ class FinanceManager:
         category=None,
         min_value=None,
         max_value=None):
-        
+
         if date_from is not None and type(date_from) is not date:
             raise TypeError("date_from must be a date object")
 
@@ -93,26 +93,38 @@ class FinanceManager:
             filtered_transactions.append(transaction)
         return filtered_transactions
 
-    def evaluate_income(self, date_from, date_to):
-        if type(date_from) != date or type(date_to) != date:
-            raise TypeError("Dates must be dates")
-        if date_from > date_to:
+    def evaluate_income(self, date_from=None, date_to=None):
+        if (date_from is None) != (date_to is None):
+            raise ValueError("Both dates must be provided")
+
+        if date_from is not None and (
+            type(date_from) is not date or type(date_to) is not date
+        ):
+            raise TypeError("Dates must be date objects")
+
+        if date_from is not None and date_from > date_to:
             raise ValueError("Start date cannot be later than end date")
         
         transactions = self.filter_transactions(date_from=date_from, date_to=date_to, category_type="income")
         income = sum((t.value for t in transactions), Decimal("0"))
         return income
 
-    def evaluate_expense(self, date_from, date_to):
-        if type(date_from) != date or type(date_to) != date:
-            raise TypeError("Dates must be dates")
-        if date_from > date_to:
+    def evaluate_expense(self, date_from=None, date_to=None):
+        if (date_from is None) != (date_to is None):
+            raise ValueError("Both dates must be provided")
+
+        if date_from is not None and (
+            type(date_from) is not date or type(date_to) is not date
+        ):
+            raise TypeError("Dates must be date objects")
+
+        if date_from is not None and date_from > date_to:
             raise ValueError("Start date cannot be later than end date")
         
         transactions = self.filter_transactions(date_from=date_from, date_to=date_to, category_type="expense")
         expense = sum((t.value for t in transactions), Decimal("0"))
         return expense
 
-    def evaluate_balance(self, date_from, date_to):
+    def evaluate_balance(self, date_from=None, date_to=None):
         return self.evaluate_income(date_from, date_to) - self.evaluate_expense(date_from, date_to)
 

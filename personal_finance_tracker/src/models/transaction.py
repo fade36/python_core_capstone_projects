@@ -1,6 +1,6 @@
 from decimal import Decimal
 from datetime import date
-from models.category import Category
+from src.models.category import Category
 from uuid import uuid4
 
 class Transaction:
