@@ -1,6 +1,7 @@
 from src.services.finance_manager import FinanceManager
 from src.models.transaction import Transaction
 from src.models.category import Category
+import src.storage.json_handler as json_handler
 from time import sleep
 from decimal import Decimal
 from datetime import datetime
@@ -11,70 +12,88 @@ class Menu:
 
     def run(self):
         while True:
-            self.show_main_menu()
-            external_userInput = input("Select option: ")
-            match external_userInput:
-                case "1":
-                    while True:
-                        self.show_transactions_menu()
-                        internal_userInput = input("Select option: ")
-                        match internal_userInput:
-                            case "1":
-                                self.transactions_add_menu()
-                            case "2":
-                                self.transactions_rm_menu()
-                            case "3":
-                                self.view_transactions()
-                            case "4":
-                                filtered_tr = self.filter_transaction_menu()
-                                if filtered_tr is not None:
-                                    self.view_transactions(filtered_tr)
-                            case "5":
-                                break
-                            case _:
-                                print("Invalid option")
-                case "2":
-                    while True:
-                        self.show_categories_menu()
-                        internal_userInput = input("Select option: ")
-                        match internal_userInput:
-                            case "1":
-                                self.category_add_menu()
-                            case "2":
-                                self.category_rm_menu()
-                            case "3":
-                                self.view_categories()
-                            case "4":
-                                break
-                            case _:
-                                print("Invalid option")
-                case "3":
-                    while True:
-                        self.show_financial_overview_menu()
-                        internal_userInput = input("Select option: ")
-                        match internal_userInput:
-                            case "1":
-                                income = self.eval_all("income")
-                                print(f"Your income for that period is {income}$")
-                            case "2":
-                                expense = self.eval_all("expense")
-                                print(f"Your expense for that period is {expense}$")
-                            case "3":
-                                balance = self.eval_all("balance")
-                                print(f"Your balance for that period is {balance}$")
-                            case "4":
-                                self.financial_summary_menu()
-                            case "5":
-                                break
-                            case _:
-                                print("Invalid option")
-
-                case "4":
-                    print("Exiting...")
-                    sleep(1)
-                    break
-                case _:
-                    print("Invalid option.")
+            try:
+                self.show_main_menu()
+                external_userInput = input("Select option: ")
+                match external_userInput:
+                    case "1":
+                        while True:
+                            self.show_transactions_menu()
+                            internal_userInput = input("Select option: ")
+                            match internal_userInput:
+                                case "1":
+                                    self.transactions_add_menu()
+                                case "2":
+                                    self.transactions_rm_menu()
+                                case "3":
+                                    self.view_transactions()
+                                case "4":
+                                    filtered_tr = self.filter_transaction_menu()
+                                    if filtered_tr is not None:
+                                        self.view_transactions(filtered_tr)
+                                case "5":
+                                    break
+                                case _:
+                                    print("Invalid option")
+                    case "2":
+                        while True:
+                            self.show_categories_menu()
+                            internal_userInput = input("Select option: ")
+                            match internal_userInput:
+                                case "1":
+                                    self.category_add_menu()
+                                case "2":
+                                    self.category_rm_menu()
+                                case "3":
+                                    self.view_categories()
+                                case "4":
+                                    break
+                                case _:
+                                    print("Invalid option")
+                    case "3":
+                        while True:
+                            self.show_financial_overview_menu()
+                            internal_userInput = input("Select option: ")
+                            match internal_userInput:
+                                case "1":
+                                    income = self.eval_all("income")
+                                    print(f"Your income for that period is {income}$")
+                                case "2":
+                                    expense = self.eval_all("expense")
+                                    print(f"Your expense for that period is {expense}$")
+                                case "3":
+                                    balance = self.eval_all("balance")
+                                    print(f"Your balance for that period is {balance}$")
+                                case "4":
+                                    self.financial_summary_menu()
+                                case "5":
+                                    break
+                                case _:
+                                    print("Invalid option")
+                    case "4":
+                        while True:
+                            self.data_management_menu()
+                            userInput = input("Select option: ")
+                            match userInput:
+                                case "1":
+                                    json_handler.save_data(finance_manager=self.finance_manager)
+                                    break
+                                case "2":
+                                    json_handler.load_data(finance_manager=self.finance_manager)
+                                    break
+                                case "3":
+                                    break
+                                case _:
+                                    print("Invalid option")
+                    case "5":
+                        print("Exiting...")
+                        sleep(1)
+                        break
+                    case _:
+                        print("Invalid option.")
+            except:
+                print("Error")
+                json_handler.save_data(finance_manager=self.finance_manager)
 
     def show_main_menu(self):
         print("=" * 60)
@@ -83,11 +102,12 @@ class Menu:
         print("1. Transactions")
         print("2. Categories")
         print("3. Financial Overview")
-        print("4. Exit")
+        print("4. Data Management")
+        print("5. Exit")
 
     def show_transactions_menu(self):
-        print("=" * 60)
-        print("Transactions".center(60))
+        print("=" * 100)
+        print("Transactions".center(100))
         print("1. Add transaction")
         print("2. Remove transaction")
         print("3. View all transactions")
@@ -303,7 +323,6 @@ class Menu:
         else:
             return self.finance_manager.evaluate_balance(date_from=date_from,date_to=date_to)
            
-
     def financial_summary_menu(self):
         date_input = input("Type date from (dd-mm-yyyy): ")
         date_from = datetime.strptime(date_input, "%d-%m-%Y").date()
@@ -343,3 +362,9 @@ class Menu:
         for key, value in expense_by_category.items():
             print(f"{key}\t\t\t\t{value}")
 
+    def data_management_menu(self):
+        print("Data Management")
+        print()
+        print("1. Save data")
+        print("2. Load data")
+        print("3. Back")
