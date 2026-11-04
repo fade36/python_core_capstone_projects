@@ -1,0 +1,104 @@
+{
+    "transactions": [
+        {
+            "id": "cc555d11-3ea5-464b-9ce9-32298145a02b",
+            "value": "1250.00",
+            "category": "salary",
+            "date": "2026-10-01",
+            "description": "Part-time salary"
+        },
+        {
+            "id": "d13dd1d3-901b-4e30-97d4-50ea8255b28f",
+            "value": "45.50",
+            "category": "food",
+            "date": "2026-10-02",
+            "description": "Groceries"
+        },
+        {
+            "id": "db64d1a2-4a6c-4e1a-9f8b-095ff3ee3382",
+            "value": "12.00",
+            "category": "transport",
+            "date": "2026-10-03",
+            "description": "Bus tickets"
+        },
+        {
+            "id": "498d5800-d81c-4a7b-af4a-d36cc394c247",
+            "value": "80.00",
+            "category": "entertainment",
+            "date": "2026-10-05",
+            "description": "Cinema and snacks"
+        },
+        {
+            "id": "6935fe63-0b58-401c-add3-7e8fd41bf4f9",
+            "value": "150.00",
+            "category": "freelance",
+            "date": "2026-10-10",
+            "description": "Website design"
+        },
+        {
+            "id": "cf16a669-0fd1-4f18-b991-3d8608a2f738",
+            "value": "32.75",
+            "category": "food",
+            "date": "2026-10-12",
+            "description": "Lunch"
+        },
+        {
+            "id": "6bc568d7-837b-489b-a212-a47a1d3ba326",
+            "value": "25.00",
+            "category": "health",
+            "date": "2026-10-15",
+            "description": "Pharmacy"
+        },
+        {
+            "id": "e21d14f1-d603-42eb-9aaf-3f4e373ea234",
+            "value": "60.00",
+            "category": "transport",
+            "date": "2026-10-18",
+            "description": "Monthly transport pass"
+        },
+        {
+            "id": "7987c824-1396-4ab1-807e-2d9a62ef181a",
+            "value": "200.00",
+            "category": "gift",
+            "date": "2026-10-20",
+            "description": "Birthday gift"
+        },
+        {
+            "id": "75522066-d0d5-442e-b389-6af5b428f20b",
+            "value": "1250.00",
+            "category": "salary",
+            "date": "2026-11-01",
+            "description": "Part-time salary"
+        }
+    ],
+    "categories": [
+        {
+            "category": "salary",
+            "category_type": "income"
+        },
+        {
+            "category": "freelance",
+            "category_type": "income"
+        },
+        {
+            "category": "food",
+            "category_type": "expense"
+        },
+        {
+            "category": "transport",
+            "category_type": "expense"
+        },
+        {
+            "category": "entertainment",
+            "category_type": "expense"
+        },
+        {
+            "category": "health",
+            "category_type": "expense"
+        },
+        {
+            "category": "gift",
+            "category_type": "expense"
+        }
+    ]
+}
