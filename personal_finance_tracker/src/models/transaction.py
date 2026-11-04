@@ -4,8 +4,8 @@ from src.models.category import Category
 from uuid import uuid4
 
 class Transaction:
-    def __init__(self, value, category, transaction_date, description):
-        self.id = uuid4()
+    def __init__(self, value, category, transaction_date, description, transaction_id=None):
+        self.id = transaction_id if transaction_id is not None else uuid4()
         self.value = value
         self.category = category
         self.transaction_date = transaction_date
