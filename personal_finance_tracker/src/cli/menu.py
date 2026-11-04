@@ -147,13 +147,13 @@ class Menu:
             start = page * page_size
             end = start + page_size
 
-            print("\n" + "=" * 80)
-            print("ID\t\tCategory\tType\t\tValue\t\tDate")
-            print("-" * 80)
+            print("\n" + "=" * 100)
+            print(f"{'ID':<10}{'Category':<22}{'Type':<12}{'Value':>15}{'Date':>15}")
+            print("-" * 100)
 
             for transaction in transactions[start:end]:
-                print(f"{str(transaction.id)[-6:]}\t\t{transaction.category.category}\t\t{transaction.category.category_type}\t\t{transaction.value}\t\t{transaction.transaction_date}")
-            print("-" * 80)
+                print(f"{str(transaction.id)[-6:]:<10}{transaction.category.category:<22}{transaction.category.category_type:<12}{transaction.value:>15}{str(transaction.transaction_date):>15}")
+            print("-" * 100)
             print(f"Showing {start + 1}-{min(end, len(transactions))} " f"of {len(transactions)} transactions")
             print(f"Page {page + 1}/{max_page + 1}")
             
@@ -192,9 +192,8 @@ class Menu:
 
     def view_transactions(self, specific_transactions=None):
         print("\n" + "=" * 100)
-        print("ID\t\tCategory\t\t\t\tType\t\tValue\t\tDate")
+        print(f"{'ID':<10}{'Category':<22}{'Type':<12}{'Value':>15}{'Date':>15}")
         print("-" * 100)
-
         if specific_transactions is not None:
             transactions = specific_transactions
         else:
@@ -204,7 +203,7 @@ class Menu:
             return
 
         for transaction in transactions:
-            print(f"{str(transaction.id)[-6:]}\t\t{transaction.category.category}\t\t\t\t{transaction.category.category_type}\t\t{transaction.value}\t\t{transaction.transaction_date}")
+            print(f"{str(transaction.id)[-6:]:<10}{transaction.category.category:<22}{transaction.category.category_type:<12}{transaction.value:>15}{str(transaction.transaction_date):>15}")
 
     def filter_transaction_menu(self):
         date_from, date_to, category_name, category_type, min_val, max_val = (None, None, None, None, None, None)
