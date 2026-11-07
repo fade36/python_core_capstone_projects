@@ -4,7 +4,7 @@ from decimal import Decimal
 from datetime import date
 
 class FinanceManager:
-    def __init__(self, ):
+    def __init__(self):
         self.transactions: list[Transaction] = []
         self.categories: set[Category] = set()
 
