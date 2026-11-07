@@ -39,6 +39,8 @@ The goal is to cover the core Python concepts by building real applications rath
 - Sorting, searching, and aggregation
 - Testing edge cases
 
+UPD: as it appeared, no actual need and use from that project
+
 ## Learning Goals
 
 By completing all three projects, the goal is to consolidate:
